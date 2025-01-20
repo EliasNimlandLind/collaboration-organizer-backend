@@ -31,6 +31,8 @@ CREATE TABLE IF NOT EXISTS public.users
 )
 ```
 
+Start the application by executing `node index.js`.
+
 ## Planned changes and features
 
 - Translate all text to English
