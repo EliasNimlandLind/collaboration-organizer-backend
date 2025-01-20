@@ -12,7 +12,6 @@ The website supports user registration and login, using hashes. A logged in user
 - express
   - express-jwt
 - jsonwebtoken
-- nodemon
 - node
 - postgreSQL
 - uuid
