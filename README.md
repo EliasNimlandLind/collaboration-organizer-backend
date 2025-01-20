@@ -1,4 +1,4 @@
-# Collaboration organizer
+# Collaboration organizer backend
 
 ## About
 
@@ -19,6 +19,7 @@ The website supports user registration and login, using hashes. A logged in user
 
 ## Setup
 
+Install all dependencies by executing `npm install`.
 The database table storing user data can be created by executing:
 
 ```sql
@@ -35,8 +36,7 @@ Start the application by executing `node index.js`.
 
 ## Planned changes and features
 
-- Translate all text to English
-- Create a Python API to integrate articial intelligence and data analysis
+- Create a Python API to integrate artificial intelligence and data analysis
   - Training
   - Using
 - Create, replace, update and delete functionality on articles
