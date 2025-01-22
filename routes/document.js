@@ -1,5 +1,6 @@
 import { v4 as uuidv4 } from 'uuid';
 import express from 'express';
+import fs from 'fs';
 
 export const router = express.Router();
 
@@ -46,17 +47,31 @@ const sortArticles = (articles, sortBy) => {
 };
 
 router.post('/api/documents', async (request, response) => {
-	let filteredArticles = articles;
-	const { topic, sortBy } = request.query;
-
-	if (topic) {
-		filteredArticles = filteredArticles.filter((article) =>
-			article.topic.includes(topic)
-		);
+	const { fileName, content, metadata } = request.body;
+	if (!fileName || !content) {
+		return response
+			.status(400)
+			.json({ message: 'File name and content are required' });
 	}
 
-	filteredArticles = sortArticles(filteredArticles, sortBy);
-	response.json(filteredArticles);
+	const documentData = {
+		metadata: metadata || { lastDateSaved: new Date(), keywords: [] },
+		content: content,
+	};
+
+	const filePath = `./documents/${fileName}.json`;
+
+	fs.writeFile(filePath, JSON.stringify(documentData, null, 2), (error) => {
+		if (error) {
+			console.error('Error saving the file:', error);
+			return response
+				.status(500)
+				.json({ message: 'Error saving the document' });
+		} else {
+			console.log(`File saved successfully at ${filePath}`);
+			return response.status(201).json({ message: 'Document created' });
+		}
+	});
 });
 
 router.get('/api/articles', async (request, response) => {

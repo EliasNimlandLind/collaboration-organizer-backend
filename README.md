@@ -31,6 +31,7 @@ CREATE TABLE IF NOT EXISTS public.users
 )
 ```
 
+Create a folder named documents at root level.
 Start the application by executing `node index.js`.
 
 ## Planned changes and features
